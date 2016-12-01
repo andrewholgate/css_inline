@@ -11,9 +11,9 @@ class CssCollectionRenderer extends CoreCssCollectionRenderer {
    */
   public function render(array $css_assets) {;
     $elements = [];
-    $standard_css_assets = [];
     foreach ($css_assets as $css_asset) {
       if ($css_asset['type'] == 'inline') {
+        // Render inline element.
         $element = [
           '#type' => 'html_tag',
           '#tag' => 'style',
@@ -26,10 +26,11 @@ class CssCollectionRenderer extends CoreCssCollectionRenderer {
         $elements[] = $element;
       }
       else {
-        $standard_css_assets[] = $css_asset;
+        // Render standard elements one at a time to respect weights.
+        $elements[] = current(parent::render([$css_asset]));
       }
     }
-    return array_merge(parent::render($standard_css_assets), $elements);
+    return $elements;
   }
 
   /**
