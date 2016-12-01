@@ -1,0 +1,7 @@
+services:
+  css_inline.css.collection_renderer:
+    class: Drupal\css_inline\CssCollectionRenderer
+    arguments: [ '@state' ]
+
+  asset.css.collection_renderer:
+    alias: css_inline.css.collection_renderer
