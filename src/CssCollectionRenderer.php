@@ -9,7 +9,7 @@ class CssCollectionRenderer extends CoreCssCollectionRenderer {
   /**
    * {@inheritdoc}
    */
-  public function render(array $css_assets) {;
+  public function render(array $css_assets) {
     $elements = [];
     foreach ($css_assets as $css_asset) {
       if ($css_asset['type'] == 'inline') {
