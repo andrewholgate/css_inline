@@ -12,7 +12,7 @@ class CssCollectionRenderer extends CoreCssCollectionRenderer {
   public function render(array $css_assets) {
     $elements = [];
     foreach ($css_assets as $css_asset) {
-      if ($css_asset['inline']) {
+      if (!empty($css_asset['inline'])) {
         // Render inline element.
         $element = [
           '#type' => 'html_tag',
