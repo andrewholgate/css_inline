@@ -1,7 +1,13 @@
 services:
-  css_inline.css.collection_renderer:
-    class: Drupal\css_inline\CssCollectionRenderer
+  css_inline.asset.css.collection_renderer:
+    class: Drupal\css_inline\Asset\CssCollectionRenderer
     arguments: [ '@state' ]
 
   asset.css.collection_renderer:
-    alias: css_inline.css.collection_renderer
+    alias: css_inline.asset.css.collection_renderer
+
+  css_inline.asset.css.collection_grouper:
+    class: Drupal\css_inline\Asset\CssCollectionGrouper
+
+  asset.css.collection_grouper:
+    alias: css_inline.asset.css.collection_grouper

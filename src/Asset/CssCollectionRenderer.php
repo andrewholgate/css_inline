@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\css_inline;
+namespace Drupal\css_inline\Asset;
 
 use Drupal\Core\Asset\CssCollectionRenderer as CoreCssCollectionRenderer;
 
@@ -12,7 +12,7 @@ class CssCollectionRenderer extends CoreCssCollectionRenderer {
   public function render(array $css_assets) {
     $elements = [];
     foreach ($css_assets as $css_asset) {
-      if ($css_asset['type'] == 'inline') {
+      if ($css_asset['inline']) {
         // Render inline element.
         $element = [
           '#type' => 'html_tag',
@@ -40,7 +40,7 @@ class CssCollectionRenderer extends CoreCssCollectionRenderer {
    */
   protected function getCssFileContents($path) {
     if (!file_exists($path)) {
-      throw new \Exception('Invalid CSS asset path.');
+      throw new \Exception('Invalid CSS asset path: ' . $path);
     }
     ob_start();
     require $path;
