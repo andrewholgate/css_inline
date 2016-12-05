@@ -20,6 +20,7 @@ class CssCollectionRenderer extends CoreCssCollectionRenderer {
           '#value' => $this->getCssFileContents($css_asset['data']),
           '#attributes' => [
             'type' => 'text/css',
+            'media' => $css_asset['media'],
           ],
           '#browsers' => $css_asset['browsers'],
         ];
