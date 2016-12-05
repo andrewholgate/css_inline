@@ -42,10 +42,6 @@ class CssCollectionRenderer extends CoreCssCollectionRenderer {
     if (!file_exists($path)) {
       throw new \Exception('Invalid CSS asset path: ' . $path);
     }
-    ob_start();
-    require $path;
-    $contents = ob_get_contents();
-    ob_end_clean();
-    return $contents;
+    return file_get_contents($path);
   }
 }
