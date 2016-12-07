@@ -24,6 +24,8 @@ class CssCollectionGrouper extends CoreCssCollectionGrouper {
         $item['group'] = CSS_AGGREGATE_INLINE;
       }
     }
+
+    // Render standard elements one at a time to respect weights using Cores function.
     return parent::group($css_assets);
   }
 

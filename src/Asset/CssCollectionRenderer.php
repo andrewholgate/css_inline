@@ -4,6 +4,16 @@ namespace Drupal\css_inline\Asset;
 
 use Drupal\Core\Asset\CssCollectionRenderer as CoreCssCollectionRenderer;
 
+/**
+ * Renders CSS assets inline.
+ *
+ * Reinstates the ability to add CSS inline using Drupal Libraries and the flag:
+ * css/example-asset.css: { inline: true }
+ *
+ * There has been lot of discussion around the removal of inline CSS/JS support that can be followed here:
+ * https://www.drupal.org/node/2391025
+ */
+
 class CssCollectionRenderer extends CoreCssCollectionRenderer {
 
   /**
@@ -28,7 +38,7 @@ class CssCollectionRenderer extends CoreCssCollectionRenderer {
         $elements[] = $element;
       }
       else {
-        // Render standard elements one at a time to respect weights.
+        // Render standard elements one at a time to respect weights using Cores function.
         $elements[] = current(parent::render([$css_asset]));
       }
     }
