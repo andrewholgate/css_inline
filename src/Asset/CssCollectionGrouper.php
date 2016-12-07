@@ -5,6 +5,11 @@ namespace Drupal\css_inline\Asset;
 use Drupal\Core\Asset\CssCollectionGrouper as CoreCssCollectionGrouper;
 
 /**
+ * The default aggregation group for inline CSS files added to the page.
+ */
+const CSS_AGGREGATE_INLINE = 200;
+
+/**
  * Groups CSS assets.
  */
 class CssCollectionGrouper extends CoreCssCollectionGrouper {
@@ -16,9 +21,11 @@ class CssCollectionGrouper extends CoreCssCollectionGrouper {
     // Alter inline group so that it isn't aggregated with regular files.
     foreach ($css_assets as &$item) {
       if (!empty($item['inline'])) {
-        $item['group'] = $item['group'] - 1;
+        $item['group'] = CSS_AGGREGATE_INLINE;
       }
     }
+
+    // Render standard elements one at a time to respect weights using Cores function.
     return parent::group($css_assets);
   }
 
