@@ -11,19 +11,20 @@ class CssCollectionRenderer extends CoreCssCollectionRenderer {
    */
   public function render(array $css_assets) {
     $elements = [];
+
+    // Defaults for inline STYLE elements.
+    $style_element_defaults = array(
+      '#type' => 'html_tag',
+      '#tag' => 'style',
+    );
+
     foreach ($css_assets as $css_asset) {
       if (!empty($css_asset['inline'])) {
         // Render inline element.
-        $element = [
-          '#type' => 'html_tag',
-          '#tag' => 'style',
-          '#value' => $this->getCssFileContents($css_asset['data']),
-          '#attributes' => [
-            'type' => 'text/css',
-            'media' => $css_asset['media'],
-          ],
-          '#browsers' => $css_asset['browsers'],
-        ];
+        $element = $style_element_defaults;
+        $element['#value'] = $this->getCssFileContents($css_asset['data']);
+        $element['#attributes']['media'] = $css_asset['media'];
+        $element['#browsers'] = $css_asset['browsers'];
         $elements[] = $element;
       }
       else {
